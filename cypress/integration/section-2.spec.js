@@ -1,10 +1,15 @@
 const { Section2 } = require('../objects/section-2')
 
-describe('Problem 2', () => {
-  /**
-   * Example:
-   * To access assertSampleApiResponse() from Section2, you can do: Section2.actions.assertSampleApiResponse();
-   *
-   * Test away!
-   */
+describe('Section 2', () => {
+  beforeEach(function () {
+    cy.visit('/section-2.html')
+  })
+
+  it('Waiting for network calls', () => {
+    Section2.actions.ClickMeNetwork()
+  })
+
+  it('Opening a new tab', () => {
+    Section2.actions.ClickMeNewTab()
+  })
 })
