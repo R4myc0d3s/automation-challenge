@@ -1,38 +1,25 @@
 const Section2 = {
-  /**
-   * A literal is considered static, stable strings (eg. titles, form labels, ...)
-   */
-  literals: {
-    SAMPLE_LITERAL: 'This is a sample literal. You can safely delete it.',
+  calls: {
+    NetworkCall: 'http://localhost:8889/todos/1',
   },
-
-  /**
-   * An element is a selector for any DOM element (eg. [data-test="xxx"], #id, ...)
-   */
   elements: {
-    sampleElement: '[data-test=sample-element-to-be-safely-deleted]',
+    networkCallBtn: '[data-test="network-call-button"]',
+    newTabBtn: '[data-test="new-tab-button"]',
   },
-
-  /**
-   * An action should be pretty self explanatory! It consists of all the method performing
-   * a particular action from clicking a simple button to doing complex assertions.
-   */
   actions: {
-    /**
-     * Example of action.
-     * In this example, we are grabbing a sample element, clicking on it and asserting the api answer.
-     *
-     * This is only used as an example and can be safely deleted.
-     */
-    assertSampleApiResponse () {
-      cy.server()
-      cy.wait('/endpoint').as('endpoint')
-
-      cy.get(Section2.elements.sampleElement).click()
-      // ... An api call to "/endpoint" performed on the app.
-      cy.wait('@endpoint').should((request) => {
-        expect(request.status).to.eq(200)
-      })
+    ClickMeNetwork () {
+      cy.get(Section2.elements.networkCallBtn).should('be.visible').click()
+      // cy.request('GET', Section2.calls.NetworkCall).then((response) => {
+      //   expect(response.status).to.equal(200)
+      //   cy.log(response.body.title)
+      // })
+    },
+    ClickMeNewTab () {
+      cy.get(Section2.elements.newTabBtn).should('be.visible')
+      // cy.request('GET', Section2.calls.NetworkCall).then((response) => {
+      //   expect(response.status).to.equal(200)
+      //   cy.log(response.body.title)
+      // })
     },
   },
 }
